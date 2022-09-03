@@ -24,71 +24,7 @@ IOTKME::IOTKME(int pin)
 
 }
 
-String IOTKME::SENDREQ(int v1,int v2,String autoremp,String temp,String relay ,String id)
-{
-     /*  Serial.println("Please upgrade the firmware");
-    delay(500);
-const char* ssid     = "FiberHGW_TPC808_2.4GHz";
-const char* password = "rrpCj7XP";
- WiFi.begin(ssid, password);
-  Serial.println("Connecting");
-  while(WiFi.status() != WL_CONNECTED) {
-    delay(500);
-    Serial.print(".");
-  }
-  Serial.println("connected"); */
-  WiFiClient client;
-    HTTPClient http;
-    String api="tPmAT5Ab3j7F9";
 
-String serverNam = "http://apiappscontroller.kmetechnology.com/postdata/post.php?id="+id;
-const char*serverName = serverNam.c_str();
-
-    // configure traged server and url
-   http.begin(client, serverName);
-    http.addHeader("Content-Type", "application/x-www-form-urlencoded");
-   
-    String httpRequestData = "api_key=" + api+ "&temp=" +v1+ "&hum=" +v2+ "&temonoti=" +""+ "&no=" +2+"";
-    
-    int httpResponseCode = http.POST(httpRequestData);
-      Serial.println(httpResponseCode);
-    if (httpResponseCode>0) {
-     
-      Serial.print("HTTP Response code: ");
-      Serial.println(httpResponseCode);
-       String response = http.getString();   
-  Serial.println(response);
-  if(autoremp=="Notactive"){
-      if(relay=="1"){
-          digitalWrite(_pin,HIGH);
-                      digitalWrite(LED_BUILTIN, HIGH);   // Turn the LED on (Note that LOW is the voltage level
-
-          }
-      if(relay=="0"){
-          digitalWrite(_pin,LOW);
-            digitalWrite(LED_BUILTIN, LOW);   // Turn the LED on (Note that LOW is the voltage level
-
-            }}
-             if(autoremp=="Active"){
-
-    int tempauto=temp.toInt();
-      if(tempauto>=v1)
-      
-          {
-          digitalWrite(_pin,HIGH);
-            digitalWrite(LED_BUILTIN, HIGH);   // Turn the LED on (Note that LOW is the voltage level
-
-          }
-         else{
-          digitalWrite(_pin,LOW);
-  digitalWrite(LED_BUILTIN, LOW);   // Turn the LED on (Note that LOW is the voltage level
-            }
-            }
-  return response;
-
-  }
-
-}
 void IOTKME::connect(String SSID, String PASS)
 {
       Serial.println("Please upgrade the firmware");
@@ -108,30 +44,7 @@ return;
  
 
 }
-void IOTKME::sendpush(int v1,int v2,int push ,String id)
-{
-  WiFiClient client;
-    HTTPClient http;
-String serverNam = "http://apiappscontroller.kmetechnology.com/postdata/post.php?id="+id;
-const char* serverName = serverNam.c_str();
-String api="tPmAT5Ab3j7F9";
-    // configure traged server and url
-   http.begin(client, serverName);
-    http.addHeader("Content-Type", "application/x-www-form-urlencoded");
-   
-    String httpRequestData = "api_key=" + api+ "&temp=" +v1+ "&hum=" +v2+ "&temonoti=" +"send"+ "&no=" +push+"";
-    
-    int httpResponseCode = http.POST(httpRequestData);
-      Serial.println(httpResponseCode);
-    if (httpResponseCode>0) {
-     
-      Serial.print("HTTP Response code: ");
-      Serial.println(httpResponseCode);
-       String response = http.getString();   
-  Serial.println(response);}
- 
 
-}
 void IOTKME::server()
 {
 /*   IPAddress    apIP(42, 42, 42, 42); 
@@ -153,11 +66,7 @@ void IOTKME::server()
 
 }
 
-void IOTKME::PUSHNOTI( )
-{
- 
-  
-}
+
 void rootsend() {
 IPAddress    apIP(42, 42, 42, 42);  
 ESP8266WebServer server(80);

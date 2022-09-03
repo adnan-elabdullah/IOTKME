@@ -12,15 +12,12 @@ IOTKME	KEYWORD1
 # Methods and Functions (KEYWORD2)
 #######################################
 
-SENDREQ					    KEYWORD2
-sendpush					KEYWORD2
 recupdate                   KEYWORD2
 WifiPass                    KEYWORD2
 WifiSsid                     KEYWORD2
 Deviceid                     KEYWORD2
 connect			             KEYWORD2
    EepromWifi                KEYWORD2
-Servermode                    KEYWORD2
 #######################################
 # Constants (LITERAL1)
 #######################################

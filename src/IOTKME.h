@@ -19,8 +19,6 @@ class IOTKME
 {
   public:
     IOTKME(int pin);
-    String SENDREQ(int v1,int v2,String autoremp,String temp,String relay,String id);
-    void PUSHNOTI();
         void connect(String SSID, String PASS);
        void server();
               void recupdate(String url);
@@ -29,7 +27,6 @@ class IOTKME
             String WifiPass();
             String WifiSsid();
             String Deviceid();
-void sendpush(int v1,int v2,int push,String id);
   private:
     int _pin;
 };
