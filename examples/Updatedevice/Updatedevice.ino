@@ -8,7 +8,7 @@ void setup() {
 IOTKME.connect(ss,sp);
 //rest device and press on update but for update your device
 if(digitalRead(updatepin)==false){
-IOTKME.recupdate("http://apiappscontroller.kmetechnology.com/tempdevice.bin");
+IOTKME.recupdate("BIN FILE URL HERE");
 }
 }
 
