@@ -1,12 +1,13 @@
 
 #include "Arduino.h"
 #include "IOTKME.h"
+#include "ArduinoJson.h"
+
 #include <ESP8266WiFi.h>
 #include <ESP8266HTTPClient.h>
 #include <WiFiClient.h>
 #include <ESP8266WebServer.h>
 #include <ESP8266mDNS.h>
-
 #include <ESP8266WiFiMulti.h>
 #include <ESP8266httpUpdate.h>
 #include <EEPROM.h>
@@ -284,4 +285,19 @@ a=130+t;
    }
   
 return ideep;
+}
+String IOTKME::Kmegetvalue(String Value,String response)
+{
+  StaticJsonDocument<1024> doc;
+
+DeserializationError error = deserializeJson(doc, response);
+
+if (error)
+{
+  Serial.print(F("deserializeJson() failed: "));
+  Serial.println(error.f_str());
+ 
+}
+ String root_0_temp = doc[0][Value]; // "55"
+return root_0_temp;
 }

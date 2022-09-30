@@ -3,8 +3,10 @@
   Created by David A. Mellis, November 2, 2007.
   Released into the public domain.
 */
+
 #ifndef IOTKME_h
 #define IOTKME_h
+#include "ArduinoJson.h"
 #include <ESP8266WiFi.h>
 #include <ESP8266HTTPClient.h>
 #include <WiFiClient.h>
@@ -27,6 +29,8 @@ class IOTKME
             String WifiPass();
             String WifiSsid();
             String Deviceid();
+ String Kmegetvalue(String Value,String response);
+
   private:
     int _pin;
 };
