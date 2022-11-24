@@ -1,12 +1,12 @@
 {
     "name": "IOTKME",
-    "keywords": "Loadcell, scale, weight,HX711,steppermotor,Dcmotor",
+    "keywords": "Loadcell, scale, weight,HX711,steppermotor,Dcmotor,Currency Conversion,Currency",
     "description": "IOT FUNCTIONS LIBRARY",
     "repository": {
         "type": "git",
         "url": "https://github.com/adnanelabdullah/IOTKME.git"
     },
-    "version": "3.0",
+    "version": "0.1",
     "exclude": "tests",
     "examples": "examples/*/*.ino",
     "frameworks": "arduino",

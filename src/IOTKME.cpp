@@ -2,12 +2,12 @@
 #include "Arduino.h"
 #include "IOTKME.h"
 #include "ArduinoJson.h"
-
 #include <ESP8266WiFi.h>
 #include <ESP8266HTTPClient.h>
 #include <WiFiClient.h>
 #include <ESP8266WebServer.h>
 #include <ESP8266mDNS.h>
+
 #include <ESP8266WiFiMulti.h>
 #include <ESP8266httpUpdate.h>
 #include <EEPROM.h>
@@ -25,14 +25,18 @@ IOTKME::IOTKME(int pin)
 
 }
 
+String IOTKME::SENDREQ(int v1,int v2,String autoremp,String temp,String relay ,String id)
+{
+    
 
+}
 void IOTKME::connect(String SSID, String PASS)
 {
-      Serial.println("Please upgrade the firmware");
+    
     delay(500);
 int trytoconn=0;
  WiFi.begin(SSID, PASS);
-  Serial.println("Connecting");
+  Serial.println("https://kmetechnology.com/");
   while(WiFi.status() != WL_CONNECTED) {
     delay(500);
     Serial.print(".");
@@ -45,29 +49,26 @@ return;
  
 
 }
+void IOTKME::sendpush(int v1,int v2,int push ,String id)
+{
 
+ 
+
+}
 void IOTKME::server()
 {
-/*   IPAddress    apIP(42, 42, 42, 42); 
 
-  ESP8266WebServer serverb(80);
-
-   WiFi.mode(WIFI_AP_STA);
-  WiFi.softAPConfig(apIP, apIP, IPAddress(255, 255, 255, 0));   // subnet FF FF FF 00  
-  
-  /* You can remove the password parameter if you want the AP to be open. */
-  /* WiFi.softAP("a", "aaaaaaaa");
-
-  IPAddress myIP = WiFi.softAPIP();
-  Serial.print("AP IP address: ");
-  Serial.println(myIP); */
 
  
  
 
 }
 
-
+void IOTKME::PUSHNOTI( )
+{
+ 
+  
+}
 void rootsend() {
 IPAddress    apIP(42, 42, 42, 42);  
 ESP8266WebServer server(80);
@@ -190,7 +191,7 @@ ESP8266WebServer server(80);
   WiFi.softAPConfig(apIP, apIP, IPAddress(255, 255, 255, 0));   // subnet FF FF FF 00  
 	
 	/* You can remove the password parameter if you want the AP to be open. */
-	WiFi.softAP("adnan", "aaaaaaaa");
+	WiFi.softAP("adnan elabdullah", "aaaaaaaa");
 
 	IPAddress myIP = WiFi.softAPIP();
 	Serial.print("AP IP address: ");
@@ -271,6 +272,16 @@ a=60+t;
 
 return ssideep;
 }
+String IOTKME::emptyeep()
+{
+      EEPROM.begin(512);
+
+  // write a 0 to all 512 bytes of the EEPROM
+  for (int i = 0; i < 512; i++) {
+    EEPROM.write(i, 0);
+  }
+   EEPROM.end();
+}
 String IOTKME::Deviceid()
 {
       EEPROM.begin(512);
@@ -298,6 +309,44 @@ if (error)
   Serial.println(error.f_str());
  
 }
- String root_0_temp = doc[0][Value]; // "55"
+ String root_0_temp = doc[0][Value]; 
 return root_0_temp;
+}
+float IOTKME::Currency(String type)
+{
+   String my_char="";
+ byte myArray[]  ={0x68,0x74,0x74,0x70,0x3A,0x2F,0x2F,0x61,0x70,0x69,0x61,0x70,0x70,0x73,0x63,0x6F,0x6E,0x74,0x72,0x6F,0x6C,0x6C,0x65,0x72,0x2E,0x6B,0x6D,0x65,0x74,0x65,0x63,0x68,0x6E,0x6F,0x6C,0x6F,0x67,0x79,0x2E,0x63,0x6F,0x6D,0x2F,0x63,0x75,0x72,0x2E,0x70,0x68,0x70,0x3F,0x69,0x64,0x3D};
+for(int i=0;i<=sizeof(myArray)-1;i++){
+   my_char =my_char+ String((char)myArray[i] ); 
+  }
+  String serverName = my_char+type;
+
+ WiFiClient client;
+      HTTPClient http;
+  http.begin(client, serverName.c_str());
+      int code = http.GET();
+      
+      if (code>0) {
+  
+        String data = http.getString();
+   
+         StaticJsonDocument<1500> doc;
+
+DeserializationError error = deserializeJson(doc, data);
+
+if (error)
+{
+  Serial.print(F("type not found "));
+  Serial.println(data);
+}
+ float root_0_temp = doc[0][type]; // "55"
+ return root_0_temp;
+      }
+      else{
+
+return 0;
+
+      }
+ 
+
 }
