@@ -6,7 +6,7 @@
         "type": "git",
         "url": "https://github.com/adnanelabdullah/IOTKME.git"
     },
-    "version": "1.0.1",
+    "version": "3.0.1",
     "exclude": "tests",
     "examples": "examples/*/*.ino",
     "frameworks": "arduino",
